@@ -1,11 +1,10 @@
 const express = require('express');
 const initWebRoutes = require('./server/routes/web');
 const viewEngine = require('./views/viewEngine');
-const bodyparser = require('body-parser');
 const bodyParser = require('body-parser');
+const dotenv = require('dotenv');
 
-
-
+dotenv.config({path: 'config.env'});
 
 let app = express();
 

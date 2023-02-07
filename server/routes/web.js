@@ -1,9 +1,14 @@
 const express = require('express');
-const homepageController = require('../controller/homepageController');
+const chatBotController = require('../controller/chatBotController');
+const getHomepage = require('../controller/homepageController');
 let router = express.Router();
 
 let initWebRoutes = (app) => {
-    router.get("/", (req, res) => res.render('index'));
+    router.get("/", getHomepage);
+    router.get("/webhook", chatBotController.getWebhook);
+    router.post("/webhook", chatBotController.postWebhook);
+
+
     return app.use("/", router);
 };
 
