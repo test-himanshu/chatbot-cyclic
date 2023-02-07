@@ -1,0 +1,24 @@
+{
+  "name": "serverapp",
+  "version": "1.0.0",
+  "description": "to check working on vps",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/test-himanshu/test-vps.git"
+  },
+  "author": "himanshu",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/test-himanshu/test-vps/issues"
+  },
+  "homepage": "https://github.com/test-himanshu/test-vps#readme",
+  "dependencies": {
+    "express": "^4.18.2",
+    "nodemon": "^2.0.20"
+  }
+}
