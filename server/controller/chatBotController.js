@@ -14,7 +14,6 @@ let postWebhook = (req, res) => {
         body.entry.forEach(function(entry){
            //gets the body of the webhook event
            let webhook_event = entry.messaging[0];
-           console.log("web hooooook event iiiiissss:");
            console.log(webhook_event);
 
            //get the sonder PSID
@@ -25,7 +24,6 @@ let postWebhook = (req, res) => {
            //check if the event is a message or postback and
            //pass the event to the appropriate handler function
            if(webhook_event.message){
-            console.log("webhoooooooooooook event is message");
             handleMessage(sender_psid, webhook_event.message);
            }
            else if(webhook_event.postback){
