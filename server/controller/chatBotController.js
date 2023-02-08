@@ -1,4 +1,6 @@
 const dotenv = require('dotenv');
+const { request } = require('http');
+
 
 dotenv.config({path: 'config.env'});
 
@@ -17,7 +19,7 @@ let postWebhook = (req, res) => {
            let sender_psid = webhook_event.sender.id;
            console.log('Sender PSID: ' + sender_psid);
 
-           
+
         });
 
         //return a 200-OK response to all requests
@@ -52,6 +54,56 @@ let getWebhook = (req, res) => {
         }
     }
 };
+
+
+
+//handles messages events
+function handleMessage(sender_psid, received_message){
+    let response;
+
+    //check if the message contains text
+    if(received_message.text){
+
+        //create the payload for a basic text message
+        response = {
+            "text": `you sent the message: "${received_message.text}" .Now send me an image!`
+        }
+    }
+
+    //send the response message
+    callSendAPI(sender_psid, response);
+}
+
+//handles messaging_postbacks events
+function handlePostback(sender_psid, received_postback){
+
+}
+
+//send response messages via the send API
+function callSendAPI(sender_psid, response){
+    // construct the message body
+    let request_body = {
+        "recipient": {
+            "id": sender_psid
+        },
+        "message": response
+    }
+;
+    //send the http request to the messenger platform
+    request({
+        "uri": "https://graph.facebook.com/v6.0/me/messages",
+        "qs": { "access_token": process.env.FB_PAGE_TOKEN},
+        "method": "POST",
+        "json": request_body 
+    }, (err,res,body) => {
+        if(!err){
+            console.log('message sent!');
+            console.log(`My message: ${response}`);
+        }else{
+            console.error("Unable to send message:" + err);
+        }
+    });
+}
 
 
 module.exports = {
