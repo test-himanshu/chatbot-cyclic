@@ -73,7 +73,8 @@ function handleMessage(sender_psid, received_message){
     if(received_message.text){
 
         //create the payload for a basic text message
-        if(received_message.text === "hi"){
+        if(received_message.text.includes("hi")
+        || received_message.text.includes("hello")){
             response = {"text": 'Hi, how can I help you'}
         }
         else{
