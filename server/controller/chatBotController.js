@@ -80,6 +80,8 @@ function handleMessage(sender_psid, received_message){
         response = {
             "text": `you sent the message: "${received_message.text}" .Now send me an image!`
         }
+    }else{
+        console.log("yaha kuch gadbad hai");
     }
 
     //send the response message
