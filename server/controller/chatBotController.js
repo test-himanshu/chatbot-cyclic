@@ -74,7 +74,7 @@ function handleMessage(sender_psid, received_message){
 
     //check if the message contains text
     if(received_message.text){
-        console.log(received_message.text);
+        console.log("received message ="+received_message.text);
 
         //create the payload for a basic text message
         response = {
