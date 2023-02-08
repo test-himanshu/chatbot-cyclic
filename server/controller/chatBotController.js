@@ -81,7 +81,7 @@ function handleMessage(sender_psid, received_message){
             "text": `you sent the message: "${received_message.text}" .Now send me an image!`
         }
     }
-    console.log(response);
+    //response bhi ja raha hai
 
     //send the response message
     callSendAPI(sender_psid, response);
@@ -101,6 +101,8 @@ function callSendAPI(sender_psid, response){
         },
         "message": response
     };
+
+    console.log("request bodyyyyyyy"+request_body);
 
     
     //send the http request to the messenger platform
