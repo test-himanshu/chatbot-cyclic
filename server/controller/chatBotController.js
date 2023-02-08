@@ -1,5 +1,6 @@
 const dotenv = require('dotenv');
-const { request } = require('http');
+//const { request } = require('http');
+const request = require('request');
 
 
 dotenv.config({path: 'config.env'});
@@ -87,8 +88,9 @@ function callSendAPI(sender_psid, response){
             "id": sender_psid
         },
         "message": response
-    }
-;
+    };
+
+    
     //send the http request to the messenger platform
     request({
         "uri": "https://graph.facebook.com/v6.0/me/messages",
