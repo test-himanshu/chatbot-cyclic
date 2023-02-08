@@ -74,15 +74,14 @@ function handleMessage(sender_psid, received_message){
 
     //check if the message contains text
     if(received_message.text){
-        console.log("received message ="+received_message.text);
+        //yaha pe message mil raha hai...sab ok hai
 
         //create the payload for a basic text message
         response = {
             "text": `you sent the message: "${received_message.text}" .Now send me an image!`
         }
-    }else{
-        console.log("yaha kuch gadbad hai");
     }
+    console.log(response);
 
     //send the response message
     callSendAPI(sender_psid, response);
