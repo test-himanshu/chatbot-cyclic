@@ -102,7 +102,7 @@ function callSendAPI(sender_psid, response){
         "message": response
     };
 
-    console.log("request bodyyyyyyy"+request_body);
+    //request body me bhi object aa raha hai
 
     
     //send the http request to the messenger platform
