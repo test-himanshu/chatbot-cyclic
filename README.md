@@ -1,6 +1,6 @@
 # chatbot-cyclic
 
-To open this chatbot, copy below link to your browser:
+To open this chatbot, copy below link to your browser or click it:
   
   https://baseball-cap-iguana.cyclic.app/
   
