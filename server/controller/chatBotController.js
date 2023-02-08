@@ -24,7 +24,6 @@ let postWebhook = (req, res) => {
            //check if the event is a message or postback and
            //pass the event to the appropriate handler function
            if(webhook_event.message){
-            console.log("********");
             console.log("sender psid="+sender_psid, "message="+webhook_event.message);
             handleMessage(sender_psid, webhook_event.message);
            }
@@ -111,7 +110,9 @@ function callSendAPI(sender_psid, response){
         "qs": { "access_token": process.env.FB_PAGE_TOKEN},
         "method": "POST",
         "json": request_body 
-    }, (err,res,body) => {
+    },
+    console.log(request),
+    (err,res,body) => {
         if(!err){
             console.log('message sent!');
             console.log(`My message: ${response}`);
