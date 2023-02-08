@@ -77,9 +77,36 @@ function handleMessage(sender_psid, received_message){
         || received_message.text.includes("hello")){
             response = {"text": 'Hi, how can I help you'}
         }
+
+        else if(received_message.text.includes("thank")){
+            response = {"text": 'Welcome! I am here to help you'}
+        }
+
+        else if(received_message.text.includes("weight loss")
+        || received_message.text.includes("lose weight")){
+            response = {"text": 'To lose weight you should be in a calories deficit diet. You can do cardio also'}
+        }
+
+
+        else if(received_message.text.includes("weight gain")
+        || received_message.text.includes("gain weight")){
+            response = {"text": 'To gain weight you should be in a calories surplus diet. You can do weight training also'}
+        }
+
+        else if(received_message.text.includes("exercise")
+        || received_message.text.includes("workout")){
+            response = {"text": 'Here are some simple exercises. Skipping, pushups, pullups'}
+        }
+
+        else if(received_message.text.includes("bye")
+        || received_message.text.includes("tata")){
+            response = {"text": 'Bye! See you soon'}
+        }
+
+
         else{
         response = {
-            "text": `you sent the message: "${received_message.text}" .Now send me an image!`
+            "text": 'I am not trained for this. You can give feedbacks on the below mail'
         }
     }
     }
