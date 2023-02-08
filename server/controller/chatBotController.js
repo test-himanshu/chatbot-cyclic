@@ -18,13 +18,11 @@ let postWebhook = (req, res) => {
 
            //get the sonder PSID
            let sender_psid = webhook_event.sender.id;
-           console.log('Sender PSID: ' + sender_psid);
 
 
            //check if the event is a message or postback and
            //pass the event to the appropriate handler function
            if(webhook_event.message){
-            console.log("sender psid="+sender_psid, "message="+webhook_event.message);
             handleMessage(sender_psid, webhook_event.message);
            }
            else if(webhook_event.postback){
@@ -73,14 +71,17 @@ function handleMessage(sender_psid, received_message){
 
     //check if the message contains text
     if(received_message.text){
-        //yaha pe message mil raha hai...sab ok hai
 
         //create the payload for a basic text message
+        if(received_message === 'hi'){
+            response = {"text": 'Hi, how can I help you'}
+        }
+        else{
         response = {
             "text": `you sent the message: "${received_message.text}" .Now send me an image!`
         }
     }
-    //response bhi ja raha hai
+    }
 
     //send the response message
     callSendAPI(sender_psid, response);
@@ -101,8 +102,6 @@ function callSendAPI(sender_psid, response){
         "message": response
     };
 
-    //request body me bhi object aa raha hai
-
     
     //send the http request to the messenger platform
     request({
@@ -111,8 +110,7 @@ function callSendAPI(sender_psid, response){
         "method": "POST",
         "json": request_body 
     },
-    console.log(request),
-    (err,res,body) => {
+    (err, res, body) => {
         if(!err){
             console.log('message sent!');
             console.log(`My message: ${response}`);
