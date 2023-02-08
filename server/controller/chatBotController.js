@@ -21,6 +21,14 @@ let postWebhook = (req, res) => {
            console.log('Sender PSID: ' + sender_psid);
 
 
+           //check if the event is a message or postback and
+           //pass the event to the appropriate handler function
+           if(webhook_event.message){
+            handleMessage(sender_psid, webhook_event.message);
+           }
+           else if(webhook_event.postback){
+            handlePostback(sender_psid, webhook_event.postback);
+           }
         });
 
         //return a 200-OK response to all requests
