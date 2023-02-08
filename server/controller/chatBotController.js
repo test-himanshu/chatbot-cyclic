@@ -9,10 +9,15 @@ let postWebhook = (req, res) => {
     if(body.object === 'page'){
         //iterates over each entry - there may be multiple if bathced
         body.entry.forEach(function(entry){
-            //gets the message.  entry.messaging is array,but
-            //will only ever contain one message.so we get index 0
-            let webhook_event = entry.messaging[0];
-            console.log(webhook_event);
+           //gets the body of the webhook event
+           let webhook_event = entry.messaging[0];
+           console.log(webhook_event);
+
+           //get the sonder PSID
+           let sender_psid = webhook_event.sender.id;
+           console.log('Sender PSID: ' + sender_psid);
+
+           
         });
 
         //return a 200-OK response to all requests
