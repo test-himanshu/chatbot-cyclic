@@ -5,8 +5,12 @@ const bodyParser = require('body-parser');
 const dotenv = require('dotenv');
 
 dotenv.config({path: 'config.env'});
+const connectDB = require('./server/database/connection')
 
 let app = express();
+
+connectDB();
+
 
 //config view engine
 viewEngine(app);

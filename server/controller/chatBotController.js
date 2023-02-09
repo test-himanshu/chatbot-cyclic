@@ -1,6 +1,7 @@
 const dotenv = require('dotenv');
 //const { request } = require('http');
 const request = require('request');
+var msgdb = require('../model/model'); 
 
 
 dotenv.config({path: 'config.env'});
@@ -72,6 +73,20 @@ function handleMessage(sender_psid, received_message){
     //check if the message contains text
     if(received_message.text){
 
+        let saveMessage = () => {
+            //new message
+            const message = new msgdb({
+                PSID: sender_psid,
+                Message: received_message
+            })
+
+            //save new message in database
+            message.save(message);
+        }
+
+        saveMessage();
+
+
         //create the payload for a basic text message
         if(received_message.text.includes("hi")
         || received_message.text.includes("hello")){
@@ -102,7 +117,6 @@ function handleMessage(sender_psid, received_message){
         || received_message.text.includes("tata")){
             response = {"text": 'Bye! See you soon'}
         }
-
 
         else{
         response = {
